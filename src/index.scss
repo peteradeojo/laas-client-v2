@@ -74,6 +74,12 @@ $columns: 10;
   }
 }
 
+@media (max-width: colors.$breakpointSm) {
+  [class*="col-"] {
+    width: 100%;
+  }
+}
+
 $widths: (
   10,
   25,
@@ -134,4 +140,8 @@ button {
   padding: 6px 8px;
   border: 0;
   border-radius: 2px;
+
+  &:disabled {
+    background: rgba($color: colors.$teal, $alpha: 0.5);
+  }
 }

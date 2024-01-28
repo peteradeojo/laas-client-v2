@@ -5,8 +5,16 @@
   width: 60%;
   margin: auto;
 
+  @media screen  and (max-width: colors.$breakpointSm) {
+    width: 100%;
+    margin: auto;
+  }
+  
   h1 {
     font-size: 4em;
+    @media screen  and (max-width: colors.$breakpointSm) {
+      font-size: 2.5em;
+    }
     text-shadow: 0px 0px 100px rgb(255, 255, 255);
   }
 }

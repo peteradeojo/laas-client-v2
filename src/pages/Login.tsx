@@ -1,11 +1,31 @@
 import { useState } from 'react';
 import styles from './Login.module.scss';
+import { useLoginMutation } from '../services/api';
+import { setAuthToken } from '../services/util';
+import { useNavigate } from 'react-router-dom';
 
 const Login = (): JSX.Element => {
+	const navigate = useNavigate();
 	const [form, setForm] = useState({
 		email: '',
 		password: '',
 	});
+
+	const [login, { isLoading, isError, error }] = useLoginMutation({});
+
+	const submitLogin = async () => {
+		try {
+			const r = await login({
+				email: form.email,
+				password: form.password,
+			}).unwrap();
+
+			setAuthToken(r.data.token);
+			navigate('/dashboard');
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	return (
 		<>
@@ -20,6 +40,7 @@ const Login = (): JSX.Element => {
 							<form
 								onSubmit={(e) => {
 									e.preventDefault();
+									submitLogin();
 								}}
 								className={styles.LoginForm}
 							>
@@ -47,7 +68,7 @@ const Login = (): JSX.Element => {
 									placeholder="Password"
 								/>
 								<div className="py-1"></div>
-								<button type="submit" className="bg-teal">
+								<button type="submit" className="bg-teal" disabled={isLoading}>
 									Login
 								</button>
 							</form>

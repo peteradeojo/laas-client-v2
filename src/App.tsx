@@ -91,13 +91,13 @@ const App = () => {
 			<div className="py-5"></div>
 			<div className="row spaced center">
 				<div className="col-4">
-					<div className="bg-teal rounded px-5 py-5">
+					<div className="bg-teal rounded px-5">
 						<h1 className={'' + ' center py-5'}>Low Visibility? 👓</h1>
 					</div>
 				</div>
 
 				<div className="col-3">
-					<div className="px-5 py-5 bg-teal rounded">
+					<div className="px-5 bg-teal rounded">
 						<div className="py-5"></div>
 						<p className='center'>
 							👓 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure

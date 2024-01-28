@@ -28,3 +28,8 @@ $gradient-radial: radial-gradient(#000000ff, #b5ffe1ff, #087e8bff);
   background-color: $teal;
   color: #fff;
 }
+
+// Responsiveness
+$breakpointSm: 426px;
+$breakpointMd: 768px;
+$breakpointLg: 425px;
