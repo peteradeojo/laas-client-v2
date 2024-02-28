@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './App.tsx';
+import Apps from './pages/Apps.tsx';
 import Login from './pages/Login.tsx';
+import Signup from './pages/Signup.tsx';
 import './index.scss';
 
 import { store } from './store.ts';
@@ -29,8 +31,10 @@ const router = createBrowserRouter(
 		>
 			<Route index element={<App />} />
 			<Route path="/login" element={<Login />} />
+			<Route path="/signup" element={<Signup />} />
 			<Route element={<AuthLayout />}>
 				<Route path="/dashboard" element={<Dashboard />} />
+				<Route path="/apps/:id" element={<Apps />} />
 			</Route>
 		</Route>
 	)

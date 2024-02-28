@@ -1,0 +1,16 @@
+$levels: (
+  "error": red,
+  "fatal": red,
+  "info": blue,
+);
+
+@each $level, $color in $levels {
+  .#{$level} {
+    // background: $color;
+    cursor: pointer;
+
+    &:hover {
+      background: lighten($color: $color, $amount: 30%);
+    }
+  }
+}

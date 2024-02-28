@@ -1,10 +1,15 @@
 // @ts-ignore
 export const baseUrl: string = __ENV__.API_URL;
 
-export const setAuthToken = (token: string) => {
-	localStorage.setItem('authToken', token);
+const authKey = 'authToken';
+
+export const setAuthToken = (token?: string) => {
+	if (!token) {
+		localStorage.removeItem(authKey);
+	}
+	localStorage.setItem(authKey, token!);
 };
 
 export const getAuthToken = () => {
-	return localStorage.getItem('authToken');
+	return localStorage.getItem(authKey);
 };

@@ -25,7 +25,15 @@ export const globalApi = createApi({
 			}),
 			invalidatesTags: ['Auth'],
 		}),
+		signup: builder.mutation({
+			query: (data) => ({
+				url: 'auth/register',
+				method: 'POST',
+				body: data
+			}),
+			invalidatesTags: ['Auth'],
+		}),
 	}),
 });
 
-export const { useLoginMutation, useAuthQuery } = globalApi;
+export const { useLoginMutation, useSignupMutation, useAuthQuery } = globalApi;

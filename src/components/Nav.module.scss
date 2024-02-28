@@ -1,0 +1,24 @@
+@use '../styles/colors' as colors;
+
+.Nav {
+  @include colors.bgTeal(colors.$aquamarine);
+  // display: flex;
+  // align-items: center;
+
+  li {
+    a {
+      color: #000;
+      @include colors.button(colors.$aquamarine);
+      text-decoration: none;
+
+      &:hover {
+        @include colors.button(colors.$black);
+        color: #fff;
+      }
+    }
+
+    button {
+      cursor: pointer;
+    }
+  }
+}

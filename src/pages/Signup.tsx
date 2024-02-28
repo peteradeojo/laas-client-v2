@@ -1,23 +1,27 @@
 import { useState } from 'react';
 import styles from './Login.module.scss';
-import { useLoginMutation } from '../services/api';
+import { useSignupMutation } from '../services/api';
 import { setAuthToken } from '../services/util';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Login = (): JSX.Element => {
+const Signup = (): JSX.Element => {
 	const navigate = useNavigate();
-	const [form, setForm] = useState({
-		email: '',
-		password: '',
+	const [form, setForm] = useState<{ [key: string]: string | undefined }>({
+		email: undefined,
+		password: undefined,
+		password_confirmation: undefined,
+		name: undefined,
 	});
 
-	const [login, { isLoading }] = useLoginMutation({});
+	const [login, { isLoading }] = useSignupMutation({});
 
 	const submitLogin = async () => {
 		try {
 			const r = await login({
 				email: form.email,
 				password: form.password,
+				password_confirmation: form.password_confirmation,
+				name: form.name,
 			}).unwrap();
 
 			setAuthToken(r.data.token);
@@ -35,7 +39,7 @@ const Login = (): JSX.Element => {
 						<div className="col-5 py-5 px-5 rounded bg-white">
 							<div className="py-1"></div>
 							<img src="/zoom.svg" style={{ width: '10%' }} alt="" />
-							<h1>Login</h1>
+							<h1>Register</h1>
 							<div className="py-2"></div>
 							<form
 								onSubmit={(e) => {
@@ -44,6 +48,17 @@ const Login = (): JSX.Element => {
 								}}
 								className={styles.LoginForm}
 							>
+								<input
+									type="text"
+									name="name"
+									value={form.name}
+									required
+									placeholder="Name"
+									onChange={(e) => {
+										setForm({ ...form, name: e.target.value });
+									}}
+								/>
+								<div className="py-1"></div>
 								<input
 									type="email"
 									name="email"
@@ -68,11 +83,23 @@ const Login = (): JSX.Element => {
 									placeholder="Password"
 								/>
 								<div className="py-1"></div>
+								<input
+									type="password"
+									name="password_confirmation"
+									id="password"
+									value={form.password_confirmation}
+									onChange={(e) => {
+										setForm({ ...form, password_confirmation: e.target.value });
+									}}
+									required
+									placeholder="Password"
+								/>
+								<div className="py-1"></div>
 								<button type="submit" className="bg-teal" disabled={isLoading}>
-									Login
+									Sign Up
 								</button>
 								<div>
-									Don't have an account? <Link to={'/signup'}>Create An Account</Link>
+									Already have an account? <Link to="/login">Login</Link>
 								</div>
 							</form>
 						</div>
@@ -89,4 +116,4 @@ const Login = (): JSX.Element => {
 	);
 };
 
-export default Login;
+export default Signup;

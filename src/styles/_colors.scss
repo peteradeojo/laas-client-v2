@@ -1,12 +1,12 @@
 /* SCSS HEX */
-$black: #000000ff;
-$aquamarine: #b5ffe1ff;
-$teal: #087e8bff;
+// $black: #000000ff;
+// $aquamarine: #b5ffe1ff;
+// $teal: #087e8bff;
 
 /* SCSS HSL */
-$black: hsla(0, 0%, 0%, 1);
-$aquamarine: hsla(156, 100%, 85%, 1);
-$teal: hsla(186, 89%, 29%, 1);
+// $black: hsla(0, 0%, 0%, 1);
+// $aquamarine: hsla(156, 100%, 85%, 1);
+// $teal: hsla(186, 89%, 29%, 1);
 
 /* SCSS RGB */
 $black: rgba(0, 0, 0, 1);
@@ -24,12 +24,24 @@ $gradient-top-left: linear-gradient(225deg, #000000ff, #b5ffe1ff, #087e8bff);
 $gradient-bottom-left: linear-gradient(315deg, #000000ff, #b5ffe1ff, #087e8bff);
 $gradient-radial: radial-gradient(#000000ff, #b5ffe1ff, #087e8bff);
 
-@mixin bgTeal() {
-  background-color: $teal;
-  color: #fff;
+@mixin bgTeal($color: $teal, $text: 'inherit') {
+  background-color: $color;
+  color: $text;
 }
 
 // Responsiveness
 $breakpointSm: 426px;
 $breakpointMd: 768px;
 $breakpointLg: 425px;
+
+@mixin button($color: $teal, $text: 'inherit') {
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 2px;
+  background-color: $color;
+  color: $text;
+
+  &:disabled {
+    background: rgba($color, $alpha: 0.5);
+  }
+}

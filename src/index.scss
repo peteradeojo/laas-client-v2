@@ -53,6 +53,10 @@ body {
     justify-content: center;
   }
 
+  &.stretch {
+    align-items: stretch;
+  }
+
   &.start {
     align-items: start;
   }
@@ -85,13 +89,19 @@ $widths: (
   25,
   50,
   75,
+  90,
   100
 );
 
-@each $w in $widths {
+// @each $w in $widths {
+@for $w from 1 through 100 {
   .w-#{$w} {
     width: calc($w/100) * 100%;
-    margin: auto;
+    // margin: auto;
+  }
+  .mw-#{$w} {
+    min-width: calc($w/100) * 100%;
+    // margin: auto;
   }
 }
 
@@ -108,6 +118,12 @@ $widths: (
 
   .py-#{$i} {
     padding-top: $i *$padding;
+    padding-bottom: $i *$padding;
+  }
+  .pt-#{$i} {
+    padding-top: $i *$padding;
+  }
+  .pb-#{$i} {
     padding-bottom: $i *$padding;
   }
 }
@@ -143,5 +159,18 @@ button {
 
   &:disabled {
     background: rgba($color: colors.$teal, $alpha: 0.5);
+  }
+}
+
+li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+@for $i from 1 through 6 {
+  .h#{$i} {
+    font-size: calc((7 - $i) / 6) * 2em;
+    font-weight: bolder;
   }
 }

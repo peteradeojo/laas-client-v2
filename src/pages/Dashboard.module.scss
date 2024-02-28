@@ -1,0 +1,8 @@
+@use '../styles/colors';
+
+
+.app {
+  @include colors.bgTeal(colors.$aquamarine, #000);
+  display: block;
+  text-decoration: none;
+}
