@@ -16,8 +16,10 @@ import {
 	RouterProvider,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Dashboard from './pages/Dashboard.tsx';
+import Dashboard from './pages/Dashboard/index.tsx';
 import AuthLayout from './pages/AuthLayout.tsx';
+import Teams from './pages/Teams/index.tsx';
+import Team from './pages/Teams/Show.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromChildren(
@@ -35,6 +37,10 @@ const router = createBrowserRouter(
 			<Route element={<AuthLayout />}>
 				<Route path="/dashboard" element={<Dashboard />} />
 				<Route path="/apps/:id" element={<Apps />} />
+				<Route path="/teams">
+					<Route index element={<Teams />} />
+					<Route path=":id" element={<Team />} />
+				</Route>
 			</Route>
 		</Route>
 	)

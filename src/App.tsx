@@ -1,19 +1,16 @@
-import { Link } from 'react-router-dom';
 import styles from './App.module.scss';
+import GuestNav from './components/GuestNav';
+import React, { ReactNode } from 'react';
 
-const AB = ({
-	title,
-	text,
-	alt,
-}: {
+const AB: React.FC<{
 	title: string;
-	text: JSX.Element | string;
+	text: string | ReactNode;
 	alt?: boolean;
-}) => {
+}> = ({ title, text, alt }) => {
 	return (
 		<div className={alt ? 'bg-white' : ''} style={{ padding: '8em 0' }}>
 			<div className="container">
-				<div className={'row'}>
+				<div className={'row' + (alt ? ' alt' : '')}>
 					<div className={'col-4'}>
 						<p className={styles.extraLarge + ' center'}>{title}</p>
 					</div>
@@ -28,11 +25,7 @@ const AB = ({
 const App = () => {
 	return (
 		<>
-			<nav className={styles.nav + ' container'}>
-				<Link to={'/signup'}>Get Started</Link>
-				<div className="px-2"></div>
-				<Link to={'/login'}>Login</Link>
-			</nav>
+			<GuestNav showHome={false} />
 			<div className="py-5"></div>
 			<div className="container">
 				<div className={styles.hero}>
@@ -73,6 +66,7 @@ const App = () => {
 						consequuntur tempora!
 					</p>
 				}
+				// alt={false}
 			/>
 			<AB
 				alt
@@ -99,7 +93,7 @@ const App = () => {
 				<div className="col-3">
 					<div className="px-5 bg-teal rounded">
 						<div className="py-5"></div>
-						<p className='center'>
+						<p className="center">
 							👓 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure
 							aliquam dolores enim suscipit tempora expedita molestias aperiam,
 							repellendus maiores, laboriosam eaque nisi deleniti commodi nobis
@@ -113,7 +107,10 @@ const App = () => {
 			<div className="py-5"></div>
 			<div className="bg-teal">
 				<div className="container center">
-					<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. In magni, ut sapiente incidunt.</p>
+					<p>
+						Lorem ipsum dolor sit, amet consectetur adipisicing elit. In magni,
+						ut sapiente incidunt.
+					</p>
 				</div>
 			</div>
 		</>

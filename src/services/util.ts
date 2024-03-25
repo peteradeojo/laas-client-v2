@@ -13,3 +13,8 @@ export const setAuthToken = (token?: string) => {
 export const getAuthToken = () => {
 	return localStorage.getItem(authKey);
 };
+
+export const prepareHeaders = (headers: Headers) => {
+	headers.set('Authorization', `Bearer ${getAuthToken()}`);
+	return headers;
+}

@@ -3,6 +3,7 @@ import styles from './Login.module.scss';
 import { useSignupMutation } from '../services/api';
 import { setAuthToken } from '../services/util';
 import { Link, useNavigate } from 'react-router-dom';
+import GuestNav from '../components/GuestNav';
 
 const Signup = (): JSX.Element => {
 	const navigate = useNavigate();
@@ -33,6 +34,7 @@ const Signup = (): JSX.Element => {
 
 	return (
 		<>
+			<GuestNav />
 			<div className={styles.LoginContainer}>
 				<div className="container">
 					<div className="row center">

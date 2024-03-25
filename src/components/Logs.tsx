@@ -100,10 +100,10 @@ const Display: React.FC<{ log?: Log }> = ({ log }) => {
 			>
 				{log.context
 					? Object.keys(log.context).map((key) => (
-							<>
+							<div key={key}>
 								<ContextDisplay k={key} v={log.context[key]} />
 								<div className="pb-2"></div>
-							</>
+							</div>
 					  ))
 					: null}
 			</div>

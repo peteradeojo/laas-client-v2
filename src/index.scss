@@ -44,6 +44,10 @@ body {
   align-items: center;
   flex-wrap: wrap;
 
+  // &.reversed {
+  //   direction: row-re;
+  // }
+
   &.alt {
     flex-direction: row-reverse;
   }
@@ -87,6 +91,7 @@ $columns: 10;
 $widths: (
   10,
   25,
+  35,
   50,
   75,
   90,
@@ -126,11 +131,34 @@ $widths: (
   .pb-#{$i} {
     padding-bottom: $i *$padding;
   }
+  .m-#{$i} {
+    margin: $i *$padding;
+  }
+
+  .mx-#{$i} {
+    margin-left: $i *$padding;
+    margin-right: $i *$padding;
+  }
+
+  .my-#{$i} {
+    margin-top: $i *$padding;
+    margin-bottom: $i *$padding;
+  }
+  .mt-#{$i} {
+    margin-top: $i *$padding;
+  }
+  .mb-#{$i} {
+    margin-bottom: $i *$padding;
+  }
 }
 
 .bg-white {
   background: colors.$aquamarine;
   color: #000;
+}
+.text-light {
+  color: colors.$aquamarine;
+  // color: #000;
 }
 
 .bg-teal {

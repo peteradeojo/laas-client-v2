@@ -1,12 +1,16 @@
-import { useAppsQuery } from '../services/apps';
+import { useAppsQuery } from '../../services/apps';
 import { Link } from 'react-router-dom';
-import { User } from '../contexts/AuthContext';
+import { User } from '../../contexts/AuthContext';
 
-import styles from './Dashboard.module.scss';
+import styles from './index.module.scss';
+import { dateToString } from '../../functions';
+import Teams from './Teams';
 
 export type App = {
-	createdAt: string;
-	updatedAt: string;
+	createdat?: string;
+	updatedat?: string;
+	createdAt?: string;
+	updatedAt?: string;
 	id: number;
 	title: string;
 	token?: string;
@@ -32,8 +36,10 @@ const Apps = () => {
 								to={'/apps/' + app.id}
 								className={`${styles.app} py-5 px-3 rounded`}
 							>
-								<p><strong>{app.title}</strong></p>
-								<p>{app.createdAt}</p>
+								<p>
+									<strong>{app.title}</strong>
+								</p>
+								<p>{dateToString(app.createdat!)}</p>
 							</Link>
 						</div>
 					))}
@@ -47,7 +53,17 @@ const Dashboard = () => {
 	return (
 		<>
 			<h1>Your Integrations</h1>
-			<Apps></Apps>
+			<Apps />
+
+			<div className="pb-5"></div>
+			<div className="row">
+				<h1>Teams</h1>
+				<span className="px-2"></span>
+				<Link to={'/teams'} color="#fff" className="text-light">
+					Manage
+				</Link>
+			</div>
+			<Teams />
 		</>
 	);
 };

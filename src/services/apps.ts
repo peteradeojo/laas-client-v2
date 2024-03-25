@@ -21,7 +21,29 @@ export const appsApi = createApi({
 			query: (id) => id,
 			providesTags: ['App'],
 		}),
+		createToken: builder.mutation({
+			query: ({ id }) => ({
+				url: `${id}/token`,
+				method: 'POST',
+			}),
+			invalidatesTags: ['App'],
+		}),
+		editApp: builder.mutation({
+			query: ({ id, title }) => ({
+				url: `${id}/update`,
+				method: 'PATCH',
+				body: {
+					title,
+				},
+			}),
+			invalidatesTags: ['App'],
+		}),
 	}),
 });
 
-export const { useAppsQuery, useAppQuery } = appsApi;
+export const {
+	useAppsQuery,
+	useAppQuery,
+	useCreateTokenMutation,
+	useEditAppMutation,
+} = appsApi;

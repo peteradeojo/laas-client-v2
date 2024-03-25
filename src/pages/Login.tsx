@@ -3,6 +3,7 @@ import styles from './Login.module.scss';
 import { useLoginMutation } from '../services/api';
 import { setAuthToken } from '../services/util';
 import { Link, useNavigate } from 'react-router-dom';
+import GuestNav from '../components/GuestNav';
 
 const Login = (): JSX.Element => {
 	const navigate = useNavigate();
@@ -29,6 +30,7 @@ const Login = (): JSX.Element => {
 
 	return (
 		<>
+			<GuestNav />
 			<div className={styles.LoginContainer}>
 				<div className="container">
 					<div className="row center">
@@ -72,7 +74,8 @@ const Login = (): JSX.Element => {
 									Login
 								</button>
 								<div>
-									Don't have an account? <Link to={'/signup'}>Create An Account</Link>
+									Don't have an account?{' '}
+									<Link to={'/signup'}>Create An Account</Link>
 								</div>
 							</form>
 						</div>
