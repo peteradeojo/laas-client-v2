@@ -22,7 +22,7 @@ export const teamsApi = createApi({
 				url: `${id}/show`,
 			}),
 			transformResponse: (value: TeamT) => value,
-			providesTags: (result, error, id) => [{ type: 'Team', id }],
+			providesTags: (_result, _error, id) => [{ type: 'Team', id }],
 		}),
 		inviteMember: builder.mutation({
 			query: ({ id, email }) => ({
@@ -33,7 +33,7 @@ export const teamsApi = createApi({
 					email,
 				},
 			}),
-			invalidatesTags: (result, error, id) => [{ type: 'Team', id }],
+			invalidatesTags: (_result, _error, id) => [{ type: 'Team', id }],
 		}),
 	}),
 });
