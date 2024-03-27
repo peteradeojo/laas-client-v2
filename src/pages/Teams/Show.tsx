@@ -27,21 +27,23 @@ import styles from '../Dashboard/index.module.scss';
 
 const Apps: React.FC<{ apps: App[] }> = ({ apps }) => {
 	return (
-		<div className="row between">
-			{apps.map((app: App) => (
-				<div key={app.id} className={`col-5 p-1 pb-3`}>
-					<Link
-						to={'/apps/' + app.id}
-						className={`${styles.app} py-5 px-3 rounded`}
-					>
-						<p>
-							<strong>{app.title}</strong>
-						</p>
-						<p>Created On: {dateToString(app.createdat!)}</p>
-					</Link>
-				</div>
-			))}
-		</div>
+		<>
+			<div className="row between">
+				{apps.map((app: App) => (
+					<div key={app.id} className={`col-5 p-1 pb-3`}>
+						<Link
+							to={'/apps/' + app.id}
+							className={`${styles.app} py-5 px-3 rounded`}
+						>
+							<p>
+								<strong>{app.title}</strong>
+							</p>
+							<p>Created On: {dateToString(app.createdat!)}</p>
+						</Link>
+					</div>
+				))}
+			</div>
+		</>
 	);
 };
 

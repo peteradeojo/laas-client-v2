@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 
 import App from './App.tsx';
-import Apps from './pages/Apps.tsx';
+import Application from './pages/Application/index.tsx';
 import Login from './pages/Login.tsx';
 import Signup from './pages/Signup.tsx';
 import './index.scss';
@@ -21,6 +21,7 @@ import AuthLayout from './pages/AuthLayout.tsx';
 import Teams from './pages/Teams/index.tsx';
 import Team from './pages/Teams/Show.tsx';
 import NewTeam from './pages/Teams/NewTeam.tsx';
+import NewApp from './pages/Application/NewApp.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromChildren(
@@ -37,7 +38,8 @@ const router = createBrowserRouter(
 			<Route path="/signup" element={<Signup />} />
 			<Route element={<AuthLayout />}>
 				<Route path="/dashboard" element={<Dashboard />} />
-				<Route path="/apps/:id" element={<Apps />} />
+				<Route path="/apps/:id" element={<Application />} />
+				<Route path="/apps/new" element={<NewApp />} />
 				<Route path="/teams">
 					<Route index element={<Teams />} />
 					<Route path=":id" element={<Team />} />

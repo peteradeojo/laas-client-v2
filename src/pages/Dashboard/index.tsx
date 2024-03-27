@@ -5,6 +5,7 @@ import { User } from '../../contexts/AuthContext';
 import styles from './index.module.scss';
 import { dateToString } from '../../functions';
 import Teams from './Teams';
+import { FaPlus } from 'react-icons/fa';
 
 export type App = {
 	createdat?: string;
@@ -29,9 +30,9 @@ const Apps = () => {
 			{isLoading ? <>loading apps</> : null}
 			{isError ? <></> : null}
 			{isSuccess ? (
-				<div className="row between">
+				<div className="row between py-2">
 					{data.data.slice(0, 5).map((app: App) => (
-						<div key={app.id} className={`col-5 p-1 pb-3`}>
+						<div key={app.id} className={`col-5 p-0 pb-3 pr-3`}>
 							<Link
 								to={'/apps/' + app.id}
 								className={`${styles.app} py-5 px-3 rounded`}
@@ -53,6 +54,12 @@ const Dashboard = () => {
 	return (
 		<>
 			<h1>Your Integrations</h1>
+			<button className="row spaced">
+				<Link to={'/apps/new'} className="link">
+					<span>Add an App</span>
+				</Link>
+				<FaPlus />
+			</button>
 			<Apps />
 
 			<div className="pb-5"></div>

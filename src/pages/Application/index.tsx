@@ -3,14 +3,15 @@ import {
 	useAppQuery,
 	useCreateTokenMutation,
 	useEditAppMutation,
-} from '../services/apps';
-import { App as AppType } from './Dashboard';
+} from '../../services/apps';
+import { App as AppType } from '../Dashboard';
 import React, { useEffect, useState } from 'react';
 
-import Logs from '../components/Logs';
-import { dateToString } from '../functions';
+import Logs from '../../components/Logs';
+import { dateToString } from '../../functions';
 import { FaSpinner } from 'react-icons/fa';
 import { FaClipboardList } from 'react-icons/fa6';
+import ApplicationContext from '../../contexts/ApplicationContext';
 
 const EditableHeader: React.FC<{
 	title: string;
@@ -98,11 +99,23 @@ const CopyToken: React.FC<{ token: any }> = ({ token }) => {
 
 	return (
 		<>
+			<p>Copy your token to start sending logs.</p>
 			<button className="row center" onClick={copy}>
 				<span>{token}</span>
 				<div className="px-1"></div>
 				{copying ? <FaSpinner /> : <FaClipboardList color="#bb3344" />}
 			</button>
+
+			<div className="pt-2"></div>
+			<pre className="p-3 bg-dark" style={{ fontSize: '0.75em' }}>
+				// <i>Test in your terminal</i> <br />
+				curl -X POST --json{' '}
+				{JSON.stringify({
+					text: 'text',
+					level: 'info',
+				})}{' '}
+				--header "APP_ID: {token}" https://lamp-go-api.up.vercel.app
+			</pre>
 		</>
 	);
 };
@@ -148,7 +161,7 @@ const App: React.FC<{ app: AppType }> = ({ app }) => {
 	);
 };
 
-export default function Apps() {
+export default function Application() {
 	const { id } = useParams();
 	const { isSuccess, isError, data, isLoading } = useAppQuery(id);
 	return (
@@ -156,11 +169,11 @@ export default function Apps() {
 			{isLoading ? <></> : null}
 			{isError ? <></> : null}
 			{isSuccess ? (
-				<>
+				<ApplicationContext.Provider value={data.data}>
 					<App app={data.data} />
 					<div className="py-4"></div>
 					<Logs appId={data.data.id} />
-				</>
+				</ApplicationContext.Provider>
 			) : null}
 		</>
 	);

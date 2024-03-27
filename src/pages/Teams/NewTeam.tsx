@@ -73,7 +73,17 @@ const NewTeam = () => {
 	const createTeam = async () => {
 		try {
 			const data = { name, apps: appsToAdd };
-			await create(data).unwrap();
+			const r = await create(data).unwrap();
+
+			if (r.status == "failed") {
+				notification.error({
+					message: r.message,
+					duration: 3,
+					placement: 'topRight',
+				});
+				return;
+			}
+
 			notification.success({
 				message: 'Team created successfully',
 				duration: 3,

@@ -10,6 +10,7 @@ const Teams = () => {
 					Create A Team
 				</Link>
 			</button>
+			<div className="py-2"></div>
 			<DashboardTeams />
 		</>
 	);

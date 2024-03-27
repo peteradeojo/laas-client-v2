@@ -17,7 +17,7 @@ export const appsApi = createApi({
 		apps: builder.query({
 			query: () => '',
 			providesTags: ['Apps'],
-			transformResponse: (value: {data: App[]}, _meta) => value
+			transformResponse: (value: { data: App[] }, _meta) => value,
 		}),
 		app: builder.query({
 			query: (id) => id,
@@ -40,6 +40,15 @@ export const appsApi = createApi({
 			}),
 			invalidatesTags: ['App'],
 		}),
+		newApp: builder.mutation({
+			query: ({ name }) => ({
+				url: '/',
+				method: 'POST',
+				body: {
+					title: name,
+				},
+			}),
+		}),
 	}),
 });
 
@@ -48,4 +57,5 @@ export const {
 	useAppQuery,
 	useCreateTokenMutation,
 	useEditAppMutation,
+	useNewAppMutation
 } = appsApi;

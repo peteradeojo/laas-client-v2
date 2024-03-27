@@ -34,7 +34,7 @@ const Teams = () => {
 				: isError
 				? null
 				: data?.map((t: TeamT) => (
-						<div key={t.id} className={`col-5 p-1 pb-3`}>
+						<div key={t.id} className={`col-5 p-0 pb-3`}>
 							<Link
 								to={'/teams/' + t.id}
 								className={`${styles.app} py-5 px-3 rounded`}

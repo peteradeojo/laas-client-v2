@@ -135,6 +135,14 @@ $widths: (
     padding-bottom: $i *$padding;
   }
 
+  .pl-#{$i} {
+    padding-left: $i *$padding;
+  }
+
+  .pr-#{$i} {
+    padding-right: $i *$padding;
+  }
+
   .m-#{$i} {
     margin: $i *$padding;
   }
@@ -156,11 +164,24 @@ $widths: (
   .mb-#{$i} {
     margin-bottom: $i *$padding;
   }
+
+  .ml-#{$i} {
+    margin-left: $i *$padding;
+  }
+
+  .mr-#{$i} {
+    margin-right: $i *$padding;
+  }
 }
 
 .bg-white {
   background: colors.$aquamarine;
   color: #000;
+}
+
+.bg-dark {
+  background: colors.$black;
+  color: #fff;
 }
 
 .text-light {
