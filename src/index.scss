@@ -104,6 +104,7 @@ $widths: (
     width: calc($w/100) * 100%;
     // margin: auto;
   }
+
   .mw-#{$w} {
     min-width: calc($w/100) * 100%;
     // margin: auto;
@@ -125,12 +126,15 @@ $widths: (
     padding-top: $i *$padding;
     padding-bottom: $i *$padding;
   }
+
   .pt-#{$i} {
     padding-top: $i *$padding;
   }
+
   .pb-#{$i} {
     padding-bottom: $i *$padding;
   }
+
   .m-#{$i} {
     margin: $i *$padding;
   }
@@ -144,9 +148,11 @@ $widths: (
     margin-top: $i *$padding;
     margin-bottom: $i *$padding;
   }
+
   .mt-#{$i} {
     margin-top: $i *$padding;
   }
+
   .mb-#{$i} {
     margin-bottom: $i *$padding;
   }
@@ -156,6 +162,7 @@ $widths: (
   background: colors.$aquamarine;
   color: #000;
 }
+
 .text-light {
   color: colors.$aquamarine;
   // color: #000;
@@ -185,8 +192,14 @@ button {
   border: 0;
   border-radius: 2px;
 
+  @include colors.button(colors.$aquamarine);
+
   &:disabled {
     background: rgba($color: colors.$teal, $alpha: 0.5);
+  }
+
+  &:hover {
+    background: rgba($color: colors.$teal, $alpha: 0.9);
   }
 }
 
@@ -201,4 +214,9 @@ li {
     font-size: calc((7 - $i) / 6) * 2em;
     font-weight: bolder;
   }
+}
+
+button a.link {
+  text-decoration: none;
+  color: inherit;
 }

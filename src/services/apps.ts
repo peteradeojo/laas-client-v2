@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import { baseUrl, getAuthToken } from './util';
+import { App } from '../pages/Dashboard';
 
 export const appsApi = createApi({
 	reducerPath: 'apps',
@@ -16,6 +17,7 @@ export const appsApi = createApi({
 		apps: builder.query({
 			query: () => '',
 			providesTags: ['Apps'],
+			transformResponse: (value: {data: App[]}, _meta) => value
 		}),
 		app: builder.query({
 			query: (id) => id,

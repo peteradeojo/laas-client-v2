@@ -1,0 +1,10 @@
+@use '../../styles/colors';
+
+.teamApp {
+  background-color: colors.$teal;
+  color: #fff;
+  &.selected {
+    background-color: colors.$aquamarine;
+    color: #000;
+  }
+}

@@ -20,6 +20,7 @@ import Dashboard from './pages/Dashboard/index.tsx';
 import AuthLayout from './pages/AuthLayout.tsx';
 import Teams from './pages/Teams/index.tsx';
 import Team from './pages/Teams/Show.tsx';
+import NewTeam from './pages/Teams/NewTeam.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromChildren(
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
 				<Route path="/teams">
 					<Route index element={<Teams />} />
 					<Route path=":id" element={<Team />} />
+					<Route path="new" element={<NewTeam />} />
 				</Route>
 			</Route>
 		</Route>

@@ -9,7 +9,7 @@ export const teamsApi = createApi({
 		baseUrl: `${baseUrl}/teams`,
 		prepareHeaders: prepareHeaders,
 	}),
-	tagTypes: ['Teams', 'Team'],
+	tagTypes: ['Teams', 'Team', 'Team Apps'],
 	endpoints: (builder) => ({
 		getTeams: builder.query({
 			query: () => ({
@@ -35,8 +35,31 @@ export const teamsApi = createApi({
 			}),
 			invalidatesTags: (_result, _error, id) => [{ type: 'Team', id }],
 		}),
+		getTeamApps: builder.query({
+			query: ({ id }) => ({
+				url: `${id}/apps`,
+			}),
+			providesTags: ['Team Apps']
+		}),
+		createTeam: builder.mutation({
+			query: ({ name, apps }) => ({
+				url: '/new',
+				method: 'POST',
+				body: {
+					name,
+					apps
+				},
+			}),
+			invalidatesTags: ['Teams'],
+		}),
 	}),
 });
 
-export const { useGetTeamsQuery, useLazyGetTeamsQuery, useShowTeamQuery, useInviteMemberMutation } =
-	teamsApi;
+export const {
+	useGetTeamsQuery,
+	useLazyGetTeamsQuery,
+	useShowTeamQuery,
+	useInviteMemberMutation,
+	useCreateTeamMutation,
+	useGetTeamAppsQuery,
+} = teamsApi;

@@ -1,10 +1,14 @@
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import {
 	useShowTeamQuery,
 	useInviteMemberMutation,
+	useGetTeamAppsQuery,
 } from '../../services/teams';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { notification, Table } from 'antd';
+import AuthContext from '../../contexts/AuthContext';
+import { App } from '../Dashboard';
+import { dateToString } from '../../functions';
 
 type TeamMember = {
 	id: number;
@@ -17,6 +21,28 @@ export type TeamT = {
 	name: string;
 	createdat: string;
 	members: Array<TeamMember>;
+};
+
+import styles from '../Dashboard/index.module.scss';
+
+const Apps: React.FC<{ apps: App[] }> = ({ apps }) => {
+	return (
+		<div className="row between">
+			{apps.map((app: App) => (
+				<div key={app.id} className={`col-5 p-1 pb-3`}>
+					<Link
+						to={'/apps/' + app.id}
+						className={`${styles.app} py-5 px-3 rounded`}
+					>
+						<p>
+							<strong>{app.title}</strong>
+						</p>
+						<p>Created On: {dateToString(app.createdat!)}</p>
+					</Link>
+				</div>
+			))}
+		</div>
+	);
 };
 
 const AddMember: React.FC<{ id: number }> = ({ id }) => {
@@ -72,6 +98,8 @@ const Team = () => {
 	const { data, isLoading, isError, error, isSuccess } = useShowTeamQuery({
 		id,
 	});
+	const taHook = useGetTeamAppsQuery({ id });
+	const user = useContext(AuthContext);
 
 	useEffect(() => {
 		if (isError) {
@@ -95,8 +123,17 @@ const Team = () => {
 				<>
 					<h1>{data.name}</h1>
 					<div className="py-2"></div>
+					<h3 className="mb-2">Apps</h3>
+
+					{taHook.isLoading ? (
+						<>Loading apps...</>
+					) : isError ? null : (
+						<Apps apps={taHook.data} />
+					)}
+
+					<div className="py-2"></div>
 					<h3 className="mb-2">Members</h3>
-					<AddMember id={data.id} />
+					{user?.id == (data as any).ownerid && <AddMember id={data.id} />}
 					<div className="py-2"></div>
 					<Table
 						columns={[
