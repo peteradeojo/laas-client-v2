@@ -23,24 +23,22 @@ export type TeamT = {
 	members: Array<TeamMember>;
 };
 
-import styles from '../Dashboard/index.module.scss';
+import Card from '../../components/Card';
+import AddApp from './AddApp';
 
 const Apps: React.FC<{ apps: App[] }> = ({ apps }) => {
 	return (
 		<>
-			<div className="row between">
+			<div className="row">
 				{apps.map((app: App) => (
-					<div key={app.id} className={`col-5 p-1 pb-3`}>
-						<Link
-							to={'/apps/' + app.id}
-							className={`${styles.app} py-5 px-3 rounded`}
-						>
+					<Link to={'/apps/' + app.id} className="p-1 link" key={app.id}>
+						<Card className="py-5">
 							<p>
 								<strong>{app.title}</strong>
 							</p>
 							<p>Created On: {dateToString(app.createdat!)}</p>
-						</Link>
-					</div>
+						</Card>
+					</Link>
 				))}
 			</div>
 		</>
@@ -89,7 +87,9 @@ const AddMember: React.FC<{ id: number }> = ({ id }) => {
 					setEmail(e.target.value);
 				}}
 				value={email}
+				placeholder="bestmate@team.com"
 			/>
+			<div className="pt-1"></div>
 			<button onClick={add}>Add</button>
 		</>
 	);
@@ -130,7 +130,10 @@ const Team = () => {
 					{taHook.isLoading ? (
 						<>Loading apps...</>
 					) : isError ? null : (
-						<Apps apps={taHook.data} />
+						<>
+							<AddApp team={data} exclude={taHook.data.map((t: any) => t.id)} />
+							<Apps apps={taHook.data} />
+						</>
 					)}
 
 					<div className="py-2"></div>

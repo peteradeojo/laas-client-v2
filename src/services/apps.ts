@@ -49,6 +49,16 @@ export const appsApi = createApi({
 				},
 			}),
 		}),
+		addToTeam: builder.mutation({
+			query: ({ team, app }) => ({
+				url: '/add-to-team',
+				method: 'POST',
+				body: {
+					team,
+					app,
+				},
+			}),
+		}),
 	}),
 });
 
@@ -57,5 +67,6 @@ export const {
 	useAppQuery,
 	useCreateTokenMutation,
 	useEditAppMutation,
-	useNewAppMutation
+	useNewAppMutation,
+	useAddToTeamMutation,
 } = appsApi;

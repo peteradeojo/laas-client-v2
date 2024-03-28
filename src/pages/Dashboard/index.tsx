@@ -2,10 +2,10 @@ import { useAppsQuery } from '../../services/apps';
 import { Link } from 'react-router-dom';
 import { User } from '../../contexts/AuthContext';
 
-import styles from './index.module.scss';
 import { dateToString } from '../../functions';
 import Teams from './Teams';
 import { FaPlus } from 'react-icons/fa';
+import Card from '../../components/Card';
 
 export type App = {
 	createdat?: string;
@@ -30,19 +30,16 @@ const Apps = () => {
 			{isLoading ? <>loading apps</> : null}
 			{isError ? <></> : null}
 			{isSuccess ? (
-				<div className="row between py-2">
+				<div className="row py-2">
 					{data.data.slice(0, 5).map((app: App) => (
-						<div key={app.id} className={`col-5 p-0 pb-3 pr-3`}>
-							<Link
-								to={'/apps/' + app.id}
-								className={`${styles.app} py-5 px-3 rounded`}
-							>
+						<Link to={'/apps/' + app.id} className="w-25 py-1 pr-2 link">
+							<Card className='py-5'>
 								<p>
 									<strong>{app.title}</strong>
 								</p>
 								<p>{dateToString(app.createdat!)}</p>
-							</Link>
-						</div>
+							</Card>
+						</Link>
 					))}
 				</div>
 			) : null}

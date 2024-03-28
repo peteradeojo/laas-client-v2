@@ -208,7 +208,7 @@ input {
   bottom: 0;
 }
 
-button {
+button, .btn {
   padding: 6px 8px;
   border: 0;
   border-radius: 2px;
@@ -237,7 +237,7 @@ li {
   }
 }
 
-button a.link {
+button a.link, a.link {
   text-decoration: none;
   color: inherit;
 }

@@ -39,7 +39,7 @@ export const teamsApi = createApi({
 			query: ({ id }) => ({
 				url: `${id}/apps`,
 			}),
-			providesTags: ['Team Apps']
+			providesTags: ['Team Apps'],
 		}),
 		createTeam: builder.mutation({
 			query: ({ name, apps }) => ({
@@ -47,7 +47,7 @@ export const teamsApi = createApi({
 				method: 'POST',
 				body: {
 					name,
-					apps
+					apps,
 				},
 			}),
 			invalidatesTags: ['Teams'],

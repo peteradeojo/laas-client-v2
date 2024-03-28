@@ -3,8 +3,8 @@ import { useGetTeamsQuery } from '../../services/teams';
 import { notification } from 'antd';
 import { Link } from 'react-router-dom';
 
-import styles from './teams.module.scss';
 import { dateToString } from '../../functions';
+import Card from '../../components/Card';
 
 type TeamT = {
 	id: number;
@@ -29,25 +29,25 @@ const Teams = () => {
 
 	return (
 		<>
-			{isLoading
-				? 'Loading...'
-				: isError
-				? null
-				: data?.map((t: TeamT) => (
-						<div key={t.id} className={`col-5 p-0 pb-3`}>
-							<Link
-								to={'/teams/' + t.id}
-								className={`${styles.app} py-5 px-3 rounded`}
-							>
+			{isLoading ? (
+				'Loading...'
+			) : isError ? null : (
+				<div className="row">
+					{data?.map((t: TeamT) => (
+						<Link to={'/teams/' + t.id} className="link pr-3 w-33">
+							<Card className="py-5">
 								<p>
 									<strong>{t.name}</strong>
 								</p>
 								<small>
 									Created by {t.user} on {dateToString(t.createdat!)}
 								</small>
-							</Link>
-						</div>
-				  ))}
+							</Card>
+							<div className="py-1"></div>
+						</Link>
+					))}
+				</div>
+			)}
 		</>
 	);
 };
